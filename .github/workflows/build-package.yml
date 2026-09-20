@@ -65,19 +65,10 @@ jobs:
       matrix:
         arch:
           - aarch64_cortex-a53
-          - aarch64_cortex-a72
-          - aarch64_generic
-          - arm_cortex-a7_neon-vfpv4
-          - arm_cortex-a9
-          - mipsel_24kc
-          - mips_24kc
-          - x86_64
         branch:
-          - openwrt-24.10
-          - 25.12.0-rc5
+          - openwrt-25.12
         include:
-          - { branch: openwrt-24.10, package_type: ipk }
-          - { branch: 25.12.0-rc5,   package_type: apk }
+          - { branch: openwrt-25.12, package_type: apk }
     container:
       image: openwrt/sdk:${{ matrix.arch }}-${{ matrix.branch }}
       options: --user root
@@ -138,7 +129,9 @@ jobs:
 
       - name: Install dependencies
         working-directory: /builder
-        run: apt update && apt install -y upx-ucl
+        run: |
+          wget -qO- https://github.com/upx/upx/releases/download/v5.2.1/upx-5.2.1-amd64_linux.tar.xz | tar -xJ --strip-components=1 -C /usr/local/bin upx-5.2.1-amd64_linux/upx
+          chmod +x /usr/local/bin/upx
 
       - name: Prepare package structure
         working-directory: /builder
@@ -277,8 +270,8 @@ jobs:
 
       - name: Prepare files
         run: |
-          find . -name "pkg-openwrt-*.tar" \
-            -exec tar -xvf {} --wildcards "*.ipk" --wildcards "*.apk" \;
+          find . -name "pkg-*.tar" \
+            -exec tar -xvf {} --wildcards "*.apk" \;
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
@@ -290,8 +283,6 @@ jobs:
           body: |
             ### Beszel Agent ${{ needs.validate-versions.outputs.latest_upstream_version }}
 
-            `IPK` - OpenWrt 24.10
-            `APK` - OpenWrt 25.12
+            `APK` - OpenWrt 25.12 (aarch64_cortex-a53)
           files: |
-            ./**/*.ipk
             ./**/*.apk

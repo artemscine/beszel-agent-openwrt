@@ -11,7 +11,7 @@ Lightweight server monitoring agent packaged for OpenWrt routers and devices.
 Run the installation script:
 
 ```sh
-sh <(wget -qO- https://github.com/vernette/beszel-agent-openwrt/raw/master/install.sh)
+sh <(wget -qO- https://github.com/artemscine/beszel-agent-openwrt/raw/master/install.sh)
 ```
 
 ### Manual
@@ -28,12 +28,12 @@ Or directly via wget:
 
 ```sh
 # opkg
-wget -O beszel-agent.ipk https://github.com/vernette/beszel-agent-openwrt/releases/download/vX.X.X/beszel-agent_X.X.X-r1_YOUR_ARCH.ipk
+wget -O beszel-agent.ipk https://github.com/artemscine/beszel-agent-openwrt/releases/download/vX.X.X/beszel-agent_X.X.X-r1_YOUR_ARCH.ipk
 ```
 
 ```sh
 # apk
-wget -O beszel-agent.apk https://github.com/vernette/beszel-agent-openwrt/releases/download/vX.X.X/beszel-agent_X.X.X-r1_YOUR_ARCH.apk
+wget -O beszel-agent.apk https://github.com/artemscine/beszel-agent-openwrt/releases/download/vX.X.X/beszel-agent_X.X.X-r1_YOUR_ARCH.apk
 ```
 
 > [!NOTE]

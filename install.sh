@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-API_URL="https://api.github.com/repos/vernette/beszel-agent-openwrt/releases/latest"
+API_URL="https://api.github.com/repos/artemscine/beszel-agent-openwrt/releases/latest"
 
 require_openwrt_release() {
   if [ ! -r /etc/openwrt_release ]; then
